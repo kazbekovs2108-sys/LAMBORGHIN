@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAMBORGHINI — Искусство скорости</title>
+<meta name="description" content="Официальный стиль. Неофициальный демо-сайт Lamborghini — модели, история, характеристики.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,500;1,6..96,600&family=Poppins:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   0. RESET & ROOT TOKENS
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root{
+  --bg-void:#07070a;
+  --bg-deep:#0d0c0f;
+  --bg-panel-1: rgba(24,21,18,.52);
+  --bg-panel-2: rgba(15,14,13,.62);
+  --gold-deep:#9c7a24;
+  --gold:#d4af37;
+  --gold-light:#f2d375;
+  --gold-soft: rgba(212,175,55,.14);
+  --ivory:#f4efe4;
+  --ivory-dim: rgba(244,239,228,.62);
+  --ivory-faint: rgba(244,239,228,.36);
+  --line: rgba(212,175,55,.2);
+  --line-soft: rgba(212,175,55,.09);
+  --danger:#c0392b;
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+  --ease: cubic-bezier(.19,1,.22,1);
+  --ease-soft: cubic-bezier(.4,0,.2,1);
+  --max-w: 1360px;
+  --font-display: 'Bodoni Moda', 'Times New Roman', serif;
+  --font-body: 'Poppins', -apple-system, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *, *::before, *::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+}
+
+body{
+  background: var(--bg-void);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient background texture: soft radial glows + fine grain feel */
+body::before{
+  content:"";
+  position: fixed; inset:0;
+  background:
+    radial-gradient(ellipse 900px 600px at 12% -5%, rgba(212,175,55,.10), transparent 60%),
+    radial-gradient(ellipse 900px 700px at 100% 20%, rgba(212,175,55,.06), transparent 55%),
+    radial-gradient(ellipse 1200px 800px at 50% 100%, rgba(212,175,55,.05), transparent 60%);
+  pointer-events:none;
+  z-index:0;
+}
+
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+button{ font-family:inherit; cursor:pointer; }
+input, textarea, select{ font-family:inherit; }
+
+::selection{ background: var(--gold); color:#0a0908; }
+
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background: var(--bg-void); }
+::-webkit-scrollbar-thumb{ background: linear-gradient(var(--gold-deep), var(--gold)); border-radius:10px; }
+
+:focus-visible{
+  outline: 2px solid var(--gold-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 56px);
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before{
+  content:"";
+  width: 26px; height: 1px;
+  background: var(--gold);
+}
+
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--ivory);
+}
+
+.section-head{
+  max-width: 720px;
+  margin-bottom: clamp(36px, 6vw, 64px);
+}
+.section-head h2{
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  margin-top: 14px;
+  line-height: 1.08;
+}
+.section-head h2 em{
+  font-style: italic;
+  color: var(--gold-light);
+}
+.section-head p{
+  margin-top: 18px;
+  color: var(--ivory-dim);
+  font-size: 1.02rem;
+  max-width: 560px;
+}
+.section-head.centered{
+  margin-left: auto; margin-right: auto;
+  text-align: center;
+}
+.section-head.centered .eyebrow::before{ display:none; }
+.section-head.centered p{ margin-left:auto; margin-right:auto; }
+
+section{ position: relative; padding: clamp(72px, 11vw, 148px) 0; z-index:1; }
+
+/* ============================================================
+   1. SIGNATURE — angular wedge dividers (Lamborghini's design
+      language is defined by sharp wedges, not curves. Every
+      section boundary below borrows that geometry instead of
+      a plain straight seam.)
+   ============================================================ */
+.wedge-divider{
+  position:relative;
+  height: 64px;
+  width:100%;
+  z-index:2;
+  margin-top:-1px;
+}
+.wedge-divider svg{ width:100%; height:100%; display:block; }
+
+/* ============================================================
+   2. GLASSMORPHIC PRIMITIVES
+   ============================================================ */
+.glass{
+  background: linear-gradient(160deg, var(--bg-panel-1), var(--bg-panel-2));
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 60px -25px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 34px;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), background .3s, border-color .3s, color .3s;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.btn-gold{
+  background: linear-gradient(120deg, var(--gold-deep), var(--gold) 45%, var(--gold-light));
+  color: #14110a;
+  font-weight: 700;
+}
+.btn-gold:hover{ transform: translateY(-3px); box-shadow: 0 16px 36px -10px rgba(212,175,55,.55); }
+.btn-ghost{
+  border-color: var(--line);
+  color: var(--ivory);
+  background: rgba(255,255,255,.02);
+}
+.btn-ghost:hover{ border-color: var(--gold); color: var(--gold-light); background: var(--gold-soft); transform: translateY(-3px); }
+.btn-sm{ padding: 11px 22px; font-size: .68rem; }
+
+/* clipped "panel" corner — echoes a body-panel cut line */
+.clip-panel{
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+}
+
+/* ============================================================
+   3. NAVIGATION
+   ============================================================ */
+.nav{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 26px 0;
+  transition: padding .4s var(--ease-soft), background .4s var(--ease-soft), border-color .4s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled{
+  padding: 14px 0;
+  background: rgba(7,7,10,.78);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom-color: var(--line-soft);
+}
+.nav .wrap{ display:flex; align-items:center; justify-content:space-between; }
+.logo{
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: .22em;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo .mark{
+  width: 34px; height: 34px;
+  border: 1.5px solid var(--gold);
+  transform: rotate(45deg);
+  display:grid; place-items:center;
+  flex-shrink:0;
+}
+.logo .mark span{
+  transform: rotate(-45deg);
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  color: var(--gold-light);
+}
+.nav-links{ display:flex; gap: clamp(18px, 2.4vw, 34px); align-items:center; }
+.nav-links a{
+  font-size: .82rem;
+  letter-spacing: .06em;
+  color: var(--ivory-dim);
+  position: relative;
+  padding: 6px 0;
+  transition: color .3s;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute; left:0; bottom:0;
+  width:0; height:1px;
+  background: var(--gold);
+  transition: width .4s var(--ease);
+}
+.nav-links a:hover{ color: var(--gold-light); }
+.nav-links a:hover::after{ width:100%; }
+.nav-cta{ display:flex; align-items:center; gap:18px; }
+.burger{
+  display:none;
+  width: 42px; height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(255,255,255,.02);
+  flex-direction: column;
+  align-items:center; justify-content:center;
+  gap: 5px;
+}
+.burger span{ width: 18px; height: 1.5px; background: var(--gold-light); transition: transform .35s, opacity .35s; }
+.burger.active span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
+.burger.active span:nth-child(2){ opacity:0; }
+.burger.active span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
+
+.mobile-panel{
+  position: fixed; inset: 0 0 0 auto;
+  width: min(320px, 84vw);
+  height: 100vh;
+  background: rgba(10,9,10,.97);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid var(--line);
+  z-index: 300;
+  padding: 100px 34px;
+  transform: translateX(100%);
+  transition: transform .5s var(--ease);
+  display:flex; flex-direction:column; gap: 26px;
+}
+.mobile-panel.open{ transform: translateX(0); }
+.mobile-panel a{ font-size: 1.1rem; font-family: var(--font-display); color: var(--ivory); }
+.mobile-panel a:hover{ color: var(--gold-light); }
+.scrim{
+  position: fixed; inset:0; background: rgba(0,0,0,.6); z-index: 290;
+  opacity:0; pointer-events:none; transition: opacity .4s;
+}
+.scrim.show{ opacity:1; pointer-events:auto; }
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{
+  position: relative;
+  min-height: 100svh;
+  display:flex; flex-direction:column; justify-content:center;
+  padding-top: 120px;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute; inset:0; z-index:-2;
+}
+.hero-bg img{
+  width:100%; height:100%; object-fit:cover;
+  transform: scale(1.08);
+  animation: heroZoom 18s ease-out forwards;
+  filter: brightness(.55) contrast(1.08) saturate(1.05);
+}
+@keyframes heroZoom{ to{ transform: scale(1); } }
+.hero-bg::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(7,7,10,.35) 0%, rgba(7,7,10,.25) 40%, rgba(7,7,10,.92) 96%),
+    linear-gradient(90deg, rgba(7,7,10,.75) 0%, rgba(7,7,10,.05) 45%, rgba(7,7,10,.35) 100%);
+}
+.hero-content{ position:relative; z-index:2; }
+.hero-tagline{
+  font-family: var(--font-mono);
+  color: var(--gold-light);
+  letter-spacing: .38em;
+  font-size: clamp(.68rem, 1vw, .82rem);
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  opacity:0;
+  animation: fadeUp .9s .2s var(--ease) forwards;
+}
+.hero h1{
+  font-size: clamp(2.6rem, 7.4vw, 6.4rem);
+  line-height: .98;
+  max-width: 14ch;
+  opacity:0;
+  animation: fadeUp 1s .4s var(--ease) forwards;
+}
+.hero h1 em{ font-style: italic; color: var(--gold-light); display:block; }
+.hero-sub{
+  margin-top: 26px;
+  max-width: 480px;
+  color: var(--ivory-dim);
+  font-size: 1.05rem;
+  opacity:0;
+  animation: fadeUp 1s .6s var(--ease) forwards;
+}
+.hero-actions{
+  margin-top: 42px;
+  display:flex; gap: 18px; flex-wrap:wrap;
+  opacity:0;
+  animation: fadeUp 1s .8s var(--ease) forwards;
+}
+@keyframes fadeUp{ from{ opacity:0; transform: translateY(26px);} to{ opacity:1; transform:translateY(0);} }
+
+.hero-stats{
+  position:absolute;
+  right: clamp(20px,5vw,56px);
+  bottom: 120px;
+  display:flex; gap: 34px;
+  z-index:2;
+  opacity:0;
+  animation: fadeUp 1s 1s var(--ease) forwards;
+}
+.hero-stats div{ text-align:right; }
+.hero-stats b{
+  display:block;
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
+  color: var(--gold-light);
+}
+.hero-stats span{
+  font-size: .64rem;
+  letter-spacing: .12em;
+  color: var(--ivory-faint);
+  text-transform:uppercase;
+}
+.scroll-cue{
+  position:absolute; left: 50%; bottom: 38px; transform: translateX(-50%);
+  z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  color: var(--ivory-faint);
+  font-family: var(--font-mono); font-size:.62rem; letter-spacing:.2em; text-transform:uppercase;
+}
+.scroll-cue .line{ width:1px; height:38px; background: linear-gradient(var(--gold), transparent); animation: scrollLine 2s infinite; }
+@keyframes scrollLine{ 0%{ transform: scaleY(0); transform-origin:top;} 50%{ transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{ transform:scaleY(0); transform-origin:bottom;} }
+
+@media (max-width: 720px){
+  .hero-stats{ position:static; margin-top:44px; justify-content:flex-start; }
+  .hero-stats div{ text-align:left; }
+}
+
+/* ============================================================
+   5. REVEAL ANIMATION UTILITY
+   ============================================================ */
+.reveal{ opacity:0; transform: translateY(38px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal.in{ opacity:1; transform: translateY(0); }
+.reveal-scale{ opacity:0; transform: scale(.94); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.reveal-scale.in{ opacity:1; transform: scale(1); }
+.stagger > *{ transition-delay: calc(var(--i, 0) * 90ms); }
+
+/* ============================================================
+   6. BRAND STRIP (emblem + about line)
+   ============================================================ */
+.brand-strip{
+  padding: 54px 0;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.brand-strip .wrap{
+  display:flex; align-items:center; gap: clamp(24px,5vw,64px); flex-wrap:wrap;
+}
+.brand-strip .badge{
+  width: 88px; height:88px; border-radius:50%; overflow:hidden; flex-shrink:0;
+  border: 1px solid var(--line);
+  position:relative;
+}
+.brand-strip .badge img{ width:100%; height:100%; object-fit:cover; filter: grayscale(1) contrast(1.2) brightness(.9); }
+.brand-strip .badge::after{ content:""; position:absolute; inset:0; background: radial-gradient(circle at 35% 30%, rgba(212,175,55,.35), transparent 70%); }
+.brand-strip p{
+  color: var(--ivory-dim); font-size: .98rem; max-width: 760px; flex:1; min-width:260px;
+}
+.brand-strip p b{ color: var(--gold-light); font-weight:600; }
+
+/* ============================================================
+   7. HISTORY / TIMELINE
+   ============================================================ */
+.history{ background: var(--bg-deep); }
+.timeline{
+  position: relative;
+  margin-top: 20px;
+}
+.timeline::before{
+  content:"";
+  position:absolute; left: 130px; top:0; bottom:0; width:1px;
+  background: linear-gradient(var(--gold-deep), var(--gold), var(--gold-deep));
+  opacity:.5;
+}
+.t-item{
+  display:grid;
+  grid-template-columns: 130px 60px 1fr;
+  gap: 0 28px;
+  padding: 30px 0;
+  align-items:flex-start;
+}
+.t-year{
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: var(--gold-light);
+  padding-top: 4px;
+  text-align:right;
+}
+.t-dot-col{ display:flex; justify-content:center; }
+.t-dot{
+  width: 15px; height:15px;
+  background: var(--bg-void);
+  border: 2px solid var(--gold);
+  transform: rotate(45deg);
+  margin-top: 8px;
+  position:relative;
+  transition: background .3s, box-shadow .3s;
+}
+.t-item:hover .t-dot{ background: var(--gold); box-shadow: 0 0 22px 4px rgba(212,175,55,.5); }
+.t-body h3{ font-size: 1.3rem; margin-bottom: 8px; font-weight: 500; }
+.t-body p{ color: var(--ivory-dim); max-width: 620px; font-size:.96rem; }
+.history-media{
+  margin-top: 56px;
+  display:grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 22px;
+}
+.history-media img{
+  width:100%; height: 100%; object-fit:cover;
+  border-radius: var(--radius-md);
+  filter: saturate(1.05) contrast(1.05);
+  border: 1px solid var(--line-soft);
+}
+.history-media .tall{ height: 440px; }
+.history-media .stack{ display:flex; flex-direction:column; gap:22px; }
+.history-media .stack img{ height: 209px; }
+
+@media (max-width: 640px){
+  .timeline::before{ left: 62px; }
+  .t-item{ grid-template-columns: 62px 40px 1fr; }
+  .t-year{ font-size: 1.05rem; }
+  .history-media{ grid-template-columns: 1fr; }
+  .history-media .tall{ height: 260px; }
+}
+
+/* ============================================================
+   8. CATALOG
+   ============================================================ */
+.catalog{ background: var(--bg-void); }
+.filter-row{
+  display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 44px;
+}
+.filter-btn{
+  padding: 9px 20px;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ivory-dim);
+  border-radius: 3px;
+  transition: all .3s;
+}
+.filter-btn:hover{ border-color: var(--gold); color: var(--gold-light); }
+.filter-btn.active{ background: var(--gold); border-color: var(--gold); color:#14110a; font-weight:700; }
+
+.car-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+}
+.car-card{
+  position:relative;
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%), var(--bg-panel-2);
+  transition: transform .6s var(--ease), border-color .4s, box-shadow .5s;
+  display:flex; flex-direction:column;
+}
+.car-card:hover{
+  transform: translateY(-10px) rotate(-.3deg);
+  border-color: var(--gold);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.65), 0 0 0 1px rgba(212,175,55,.25);
+}
+.car-media{ position:relative; height: 240px; overflow:hidden; }
+.car-media img{ width:100%; height:100%; object-fit:cover; transition: transform .8s var(--ease); }
+.car-card:hover .car-media img{ transform: scale(1.09); }
+.car-media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(0deg, rgba(10,9,8,.85), transparent 55%);
+}
+.car-tag{
+  position:absolute; top:16px; left:16px;
+  font-family: var(--font-mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase;
+  padding: 6px 12px; border-radius: 2px;
+  background: rgba(7,7,10,.55); border: 1px solid var(--line);
+  color: var(--gold-light); z-index:2;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.car-body{ padding: 24px 26px 26px; flex:1; display:flex; flex-direction:column; }
+.car-body h3{ font-size: 1.35rem; font-weight:500; }
+.car-body .cat-line{ color: var(--ivory-faint); font-size: .8rem; margin-top: 4px; font-family: var(--font-mono); letter-spacing:.04em; }
+.car-specs{
+  display:flex; gap: 18px; margin: 18px 0 20px;
+  padding-top: 18px; border-top: 1px solid var(--line-soft);
+}
+.car-specs div{ flex:1; }
+.car-specs b{ display:block; font-family: var(--font-mono); color: var(--gold-light); font-size: 1.05rem; }
+.car-specs span{ font-size: .66rem; color: var(--ivory-faint); text-transform:uppercase; letter-spacing:.06em; }
+.car-foot{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; }
+.car-price{ font-family: var(--font-mono); font-size: .82rem; color: var(--ivory-dim); }
+.car-price b{ color: var(--gold-light); display:block; font-size:1.05rem; }
+.car-link{
+  font-size: .74rem; letter-spacing:.1em; text-transform:uppercase; color: var(--gold-light);
+  border-bottom: 1px solid var(--gold-deep); padding-bottom: 2px; transition: border-color .3s;
+}
+.car-link:hover{ border-color: var(--gold-light); }
+
+@media (max-width: 980px){ .car-grid{ grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 620px){ .car-grid{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   9. GALLERY (masonry columns)
+   ============================================================ */
+.gallery{ background: var(--bg-deep); }
+.masonry{
+  column-count: 4; column-gap: 18px;
+}
+.masonry figure{
+  break-inside: avoid;
+  margin-bottom: 18px;
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: zoom-in;
+  border: 1px solid var(--line-soft);
+}
+.masonry figure img{ width:100%; display:block; transition: transform .7s var(--ease), filter .5s; }
+.masonry figure::after{
+  content: attr(data-caption);
+  position:absolute; left:0; right:0; bottom:0;
+  padding: 16px 16px 14px;
+  font-family: var(--font-mono); font-size:.68rem; letter-spacing:.05em;
+  color: var(--ivory);
+  background: linear-gradient(0deg, rgba(0,0,0,.82), transparent);
+  transform: translateY(100%);
+  transition: transform .45s var(--ease);
+}
+.masonry figure:hover::after{ transform: translateY(0); }
+.masonry figure:hover img{ transform: scale(1.07); filter: brightness(.75); }
+
+@media (max-width: 980px){ .masonry{ column-count: 3; } }
+@media (max-width: 680px){ .masonry{ column-count: 2; } }
+@media (max-width: 420px){ .masonry{ column-count: 1; } }
+
+/* Lightbox */
+.lightbox{
+  position: fixed; inset:0; z-index: 500;
+  background: rgba(4,4,6,.94);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none;
+  transition: opacity .4s var(--ease-soft);
+  padding: 40px;
+}
+.lightbox.open{ opacity:1; pointer-events:auto; }
+.lightbox img{ max-width: min(1100px, 92vw); max-height: 84vh; border-radius: 10px; border:1px solid var(--line); box-shadow: 0 40px 90px rgba(0,0,0,.6); }
+.lightbox-close{
+  position:absolute; top: 28px; right: clamp(20px,4vw,50px);
+  width: 46px; height:46px; border-radius:50%;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03);
+  color: var(--gold-light); font-size: 1.3rem; display:grid; place-items:center;
+}
+.lightbox-nav{
+  position:absolute; top:50%; transform: translateY(-50%);
+  width: 50px; height:50px; border-radius:50%;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03);
+  color: var(--gold-light); font-size:1.3rem; display:grid; place-items:center;
+}
+.lightbox-prev{ left: clamp(10px,3vw,40px); }
+.lightbox-next{ right: clamp(10px,3vw,40px); }
+.lightbox-cap{
+  position:absolute; bottom: 28px; left:50%; transform:translateX(-50%);
+  font-family: var(--font-mono); font-size:.72rem; letter-spacing:.1em; color: var(--ivory-dim);
+}
+
+/* ============================================================
+   10. CHARACTERISTICS
+   ============================================================ */
+.specs-section{ background: var(--bg-void); }
+.specs-layout{
+  display:grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items:center;
+}
+.specs-visual{ position: relative; border-radius: var(--radius-lg); overflow:hidden; }
+.specs-visual img{ width:100%; height: 560px; object-fit:cover; }
+.specs-visual::after{ content:""; position:absolute; inset:0; box-shadow: inset 0 0 90px 30px rgba(0,0,0,.55); }
+.specs-visual .float-card{
+  position:absolute; bottom: 24px; left:24px; right:24px;
+  padding: 20px 22px; border-radius: var(--radius-md);
+}
+.specs-visual .float-card b{ display:block; font-family: var(--font-display); font-size:1.3rem; color: var(--gold-light); font-style:italic; }
+.specs-visual .float-card span{ font-size:.82rem; color: var(--ivory-dim); }
+
+.stat-grid{
+  display:grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+}
+.stat-card{
+  padding: 26px 24px;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+.stat-card .stat-icon{ font-family: var(--font-mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color: var(--gold-light); }
+.stat-num{
+  display:flex; align-items:baseline; gap:4px;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 3.4vw, 2.7rem);
+  color: var(--ivory);
+}
+.stat-num .unit{ font-size: 1rem; color: var(--gold-light); }
+.stat-label{ margin-top: 8px; color: var(--ivory-faint); font-size: .82rem; }
+.stat-bar{ margin-top: 16px; height: 3px; background: rgba(255,255,255,.06); border-radius: 4px; overflow:hidden; }
+.stat-bar i{ display:block; height:100%; width:0%; background: linear-gradient(90deg, var(--gold-deep), var(--gold-light)); transition: width 1.4s var(--ease); border-radius:4px; }
+
+@media (max-width: 940px){
+  .specs-layout{ grid-template-columns: 1fr; }
+  .specs-visual img{ height: 320px; }
+}
+@media (max-width: 520px){ .stat-grid{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   11. VIDEO
+   ============================================================ */
+.video-section{ background: var(--bg-deep); }
+.video-frame{
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow:hidden;
+  aspect-ratio: 16/8;
+  border: 1px solid var(--line);
+  cursor:pointer;
+}
+.video-frame img{ width:100%; height:100%; object-fit:cover; filter: brightness(.55); transition: filter .5s, transform .8s var(--ease); }
+.video-frame:hover img{ filter: brightness(.4); transform: scale(1.03); }
+.video-play{
+  position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+  width: 96px; height:96px; border-radius:50%;
+  border: 1.5px solid var(--gold);
+  display:grid; place-items:center;
+  color: var(--gold-light);
+  background: rgba(7,7,10,.4);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: transform .4s var(--ease), background .3s;
+}
+.video-frame:hover .video-play{ transform: translate(-50%,-50%) scale(1.1); background: rgba(212,175,55,.18); }
+.video-play svg{ width: 26px; height:26px; margin-left: 4px; }
+.video-caption{
+  position:absolute; left: 28px; bottom: 24px; z-index:2;
+}
+.video-caption .eyebrow{ margin-bottom:8px; }
+.video-caption h3{ font-size: 1.6rem; font-style:italic; color: var(--ivory); }
+.video-modal{
+  position: fixed; inset:0; z-index: 500;
+  background: rgba(4,4,6,.94);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition: opacity .4s;
+  padding: 30px;
+}
+.video-modal.open{ opacity:1; pointer-events:auto; }
+.video-modal .frame-wrap{ width:min(1000px, 94vw); aspect-ratio:16/9; position:relative; }
+.video-modal iframe{ width:100%; height:100%; border-radius: 10px; border:1px solid var(--line); }
+.video-modal-close{
+  position:absolute; top: -50px; right:0;
+  width: 42px; height:42px; border-radius:50%;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03);
+  color: var(--gold-light); font-size:1.2rem; display:grid; place-items:center;
+}
+
+/* ============================================================
+   12. TESTIMONIALS
+   ============================================================ */
+.reviews{ background: var(--bg-void); }
+.review-track-wrap{ overflow:hidden; }
+.review-track{
+  display:flex; gap: 22px;
+  transition: transform .6s var(--ease);
+}
+.review-card{
+  flex: 0 0 calc(33.333% - 15px);
+  padding: 30px 28px;
+  border-radius: var(--radius-lg);
+  display:flex; flex-direction:column; gap: 18px;
+}
+.review-stars{ color: var(--gold); letter-spacing:3px; font-size: .95rem; }
+.review-quote{ color: var(--ivory-dim); font-size: .98rem; line-height:1.7; flex:1; }
+.review-person{ display:flex; align-items:center; gap:14px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+.review-avatar{
+  width: 46px; height:46px; border-radius:50%;
+  background: linear-gradient(135deg, var(--gold-deep), var(--gold-light));
+  display:grid; place-items:center;
+  font-family: var(--font-display); font-weight:700; color:#14110a; font-size:1.1rem;
+  flex-shrink:0;
+}
+.review-person b{ display:block; font-size:.92rem; font-weight:500; }
+.review-person span{ font-size: .76rem; color: var(--ivory-faint); }
+.review-controls{ display:flex; gap:12px; margin-top: 40px; justify-content:center; }
+.review-dot{
+  width: 9px; height:9px; border-radius:50%;
+  border: 1px solid var(--gold-deep); background: transparent;
+  transition: all .3s;
+}
+.review-dot.active{ background: var(--gold); box-shadow: 0 0 12px rgba(212,175,55,.6); }
+
+@media (max-width: 980px){ .review-card{ flex: 0 0 calc(50% - 11px); } }
+@media (max-width: 640px){ .review-card{ flex: 0 0 100%; } }
+
+/* ============================================================
+   13. FAQ
+   ============================================================ */
+.faq{ background: var(--bg-deep); }
+.faq-layout{ display:grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+.faq-list{ display:flex; flex-direction:column; gap: 14px; }
+.faq-item{ border-radius: var(--radius-md); overflow:hidden; }
+.faq-q{
+  width:100%; display:flex; align-items:center; justify-content:space-between;
+  padding: 22px 26px; background:transparent; border:none; color: var(--ivory);
+  font-family: var(--font-body); font-size: 1rem; text-align:left;
+}
+.faq-q .plus{
+  width: 26px; height:26px; border-radius:50%; border: 1px solid var(--gold-deep);
+  display:grid; place-items:center; flex-shrink:0; margin-left: 16px;
+  position:relative; transition: transform .4s var(--ease), border-color .3s;
+}
+.faq-q .plus::before, .faq-q .plus::after{ content:""; position:absolute; background: var(--gold-light); transition: transform .3s; }
+.faq-q .plus::before{ width:10px; height:1px; }
+.faq-q .plus::after{ width:1px; height:10px; }
+.faq-item.active .faq-q .plus{ transform: rotate(135deg); border-color: var(--gold); }
+.faq-a{ max-height:0; overflow:hidden; transition: max-height .5s var(--ease); }
+.faq-a p{ padding: 0 26px 24px; color: var(--ivory-dim); font-size: .94rem; line-height:1.7; max-width: 560px; }
+
+@media (max-width: 900px){ .faq-layout{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   14. CONTACTS
+   ============================================================ */
+.contacts{ background: var(--bg-void); }
+.contact-layout{ display:grid; grid-template-columns: 1fr 1fr; gap: 46px; align-items:start; }
+.contact-info{ display:flex; flex-direction:column; gap: 26px; }
+.info-row{ display:flex; gap: 18px; align-items:flex-start; padding: 22px; border-radius: var(--radius-md); }
+.info-row .icon{
+  width: 44px; height:44px; border-radius:50%; border: 1px solid var(--gold-deep);
+  display:grid; place-items:center; color: var(--gold-light); flex-shrink:0;
+}
+.info-row h4{ font-size: 1rem; font-weight:500; font-family: var(--font-body); }
+.info-row p{ color: var(--ivory-dim); font-size: .9rem; margin-top: 4px; }
+.social-row{ display:flex; gap: 14px; margin-top: 6px; }
+.social-row a{
+  width: 42px; height:42px; border-radius:50%; border: 1px solid var(--line);
+  display:grid; place-items:center; color: var(--gold-light); transition: all .3s;
+}
+.social-row a:hover{ border-color: var(--gold); background: var(--gold-soft); transform: translateY(-3px); }
+
+.contact-form{ padding: 36px; border-radius: var(--radius-lg); }
+.form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.field{ display:flex; flex-direction:column; gap: 8px; }
+.field.full{ grid-column: 1 / -1; }
+.field label{ font-size: .72rem; letter-spacing:.08em; text-transform:uppercase; color: var(--ivory-faint); font-family: var(--font-mono); }
+.field input, .field select, .field textarea{
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 13px 16px;
+  color: var(--ivory);
+  font-size: .92rem;
+  transition: border-color .3s, background .3s;
+}
+.field input:focus, .field select:focus, .field textarea:focus{
+  border-color: var(--gold); background: rgba(255,255,255,.05); outline:none;
+}
+.field textarea{ resize: vertical; min-height: 100px; }
+.form-note{ font-size: .78rem; color: var(--ivory-faint); margin-top: 14px; }
+.form-success{
+  display:none; align-items:center; gap:12px;
+  padding: 16px 18px; margin-top: 18px; border-radius: 8px;
+  border: 1px solid var(--gold-deep); background: var(--gold-soft); color: var(--gold-light); font-size:.88rem;
+}
+.form-success.show{ display:flex; }
+
+@media (max-width: 900px){ .contact-layout{ grid-template-columns: 1fr; } }
+@media (max-width: 560px){ .form-row{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   15. FOOTER
+   ============================================================ */
+footer{ background: var(--bg-deep); border-top: 1px solid var(--line-soft); padding: 70px 0 30px; position:relative; z-index:1; }
+.foot-grid{
+  display:grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 40px;
+  padding-bottom: 50px; border-bottom: 1px solid var(--line-soft);
+}
+.foot-brand p{ margin-top: 16px; color: var(--ivory-faint); font-size: .88rem; max-width: 300px; }
+.foot-col h5{ font-family: var(--font-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color: var(--gold-light); margin-bottom: 18px; }
+.foot-col ul{ display:flex; flex-direction:column; gap: 12px; }
+.foot-col a{ color: var(--ivory-dim); font-size: .88rem; transition: color .3s; }
+.foot-col a:hover{ color: var(--gold-light); }
+.foot-bottom{
+  padding-top: 26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap: 14px;
+  font-size: .78rem; color: var(--ivory-faint);
+}
+.back-top{
+  position: fixed; right: 26px; bottom: 26px; z-index: 150;
+  width: 50px; height:50px; border-radius:50%;
+  border: 1px solid var(--gold-deep); background: rgba(10,9,10,.7);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  color: var(--gold-light); display:grid; place-items:center;
+  opacity:0; pointer-events:none; transform: translateY(14px);
+  transition: all .4s var(--ease);
+}
+.back-top.show{ opacity:1; pointer-events:auto; transform: translateY(0); }
+
+@media (max-width: 860px){ .foot-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px){ .foot-grid{ grid-template-columns: 1fr; } }
+
+/* ============================================================
+   16. MISC RESPONSIVE NAV
+   ============================================================ */
+@media (max-width: 900px){
+  .nav-links{ display:none; }
+  .burger{ display:flex; }
+  .nav-cta .btn-ghost{ display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="mark"><span>L</span></span>Lamborghini</a>
+    <div class="nav-links">
+      <a href="#hero">Главная</a>
+      <a href="#history">История</a>
+      <a href="#catalog">Модели</a>
+      <a href="#gallery">Галерея</a>
+      <a href="#specs">Характеристики</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contacts" class="btn btn-ghost btn-sm">Тест-драйв</a>
+      <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#hero">Главная</a>
+  <a href="#history">История</a>
+  <a href="#catalog">Модели</a>
+  <a href="#gallery">Галерея</a>
+  <a href="#specs">Характеристики</a>
+  <a href="#reviews">Отзывы</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contacts">Контакты</a>
+</div>
+
+<div id="top"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1633650911415-5c6891611a09?auto=format&fit=crop&w=2400&q=80" alt="Lamborghini золотисто-чёрного цвета перед зданием в сумерках">
+  </div>
+  <div class="wrap hero-content">
+    <div class="hero-tagline">Potenza · Passione · Perfezione</div>
+    <h1>Границы<br>существуют,<em>чтобы их стирать</em></h1>
+    <p class="hero-sub">Санта-Ага-Болоньезе, Италия. С 1963 года каждый Lamborghini рождается на пересечении инженерной дерзости и необузданной страсти к скорости.</p>
+    <div class="hero-actions">
+      <a href="#catalog" class="btn btn-gold">Смотреть модели</a>
+      <a href="#contacts" class="btn btn-ghost">Забронировать тест-драйв</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><b>1015</b><span>л.с. Revuelto</span></div>
+    <div><b>2.5</b><span>сек до 100 км/ч</span></div>
+    <div><b>350+</b><span>км/ч макс. скорость</span></div>
+  </div>
+  <div class="scroll-cue"><span>Скролл</span><div class="line"></div></div>
+</header>
+
+<div class="wedge-divider"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><polygon points="0,64 0,20 480,64 960,4 1440,64 1440,64" fill="#07070a"></polygon></svg></div>
+
+<!-- ============ BRAND STRIP ============ -->
+<section class="brand-strip">
+  <div class="wrap reveal">
+    <div class="badge"><img src="https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&w=300&q=80" alt="Эмблема Lamborghini на чёрном фоне" loading="lazy"></div>
+    <p><b>Automobili Lamborghini</b> — итальянский производитель суперкаров из Сант-Ага-Болоньезе. Основанная Ферруччо Ламборгини в 1963 году, компания превратила бунтарскую идею «лучше, чем у соседа» в один из самых узнаваемых автомобильных брендов планеты — символ угловатого дизайна, атмосферных двигателей V12 и бескомпромиссного характера.</p>
+  </div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section class="history" id="history">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">С 1963 года</span>
+      <h2>История, выкованная <em>из стали и упрямства</em></h2>
+      <p>Путь от тракторного завода до легенды суперкаров — хронология решений, которые изменили представление об автомобиле навсегда.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="t-item reveal">
+        <div class="t-year">1963</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Рождение бунтаря</h3>
+          <p>Ферруччо Ламборгини, успешный производитель тракторов, недовольный своим Ferrari, решает построить «безупречный гран-туризмо» — так в Сант-Ага-Болоньезе основана Automobili Lamborghini.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">1966</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Miura меняет правила</h3>
+          <p>Первый в мире суперкар с поперечным центральным расположением двигателя. Miura задаёт архетип, по которому строятся суперкары до сих пор.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">1974</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Countach и рождение клина</h3>
+          <p>Угловатый силуэт, ножничные двери, дизайн Марчелло Гандини — Countach становится визуальным манифестом бренда на следующие полвека.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">1998</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Новая глава в составе Audi</h3>
+          <p>Lamborghini входит в концерн Volkswagen Group под управлением Audi — начинается эра технологической стабильности без потери характера.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">2011</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Aventador наследует трон</h3>
+          <p>Карбоновый монокок, атмосферный V12 и репутация самого зрелищного флагмана поколения — Aventador на десятилетие определяет облик марки.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">2018</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Urus — суперкар-внедорожник</h3>
+          <p>Lamborghini переопределяет сегмент SUV, сохраняя ДНК суперкара в кузове с местом для всей семьи.</p>
+        </div>
+      </div>
+      <div class="t-item reveal">
+        <div class="t-year">2023</div>
+        <div class="t-dot-col"><div class="t-dot"></div></div>
+        <div class="t-body">
+          <h3>Revuelto и гибридная эра</h3>
+          <p>К 60-летию бренда — первый серийный V12-гибрид Lamborghini мощностью 1015 л.с. Наследие атмосферного звука встречается с электрификацией.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="history-media reveal-scale">
+      <img class="tall" src="https://images.unsplash.com/photo-1535382651921-5e77ea4458f2?auto=format&fit=crop&w=1200&q=80" alt="Красный Lamborghini Gallardo — наследие бренда" loading="lazy">
+      <div class="stack">
+        <img src="https://images.unsplash.com/photo-1566473965997-3de9c817e938?auto=format&fit=crop&w=900&q=80" alt="Красный Lamborghini на дороге" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1620288627223-53302f4e8c74?auto=format&fit=crop&w=900&q=80" alt="Логотип быка Lamborghini на чёрном фоне" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wedge-divider"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><polygon points="0,0 0,64 1440,64 1440,10 960,60 480,0" fill="#07070a"></polygon></svg></div>
+
+<!-- ============ CATALOG ============ -->
+<section class="catalog" id="catalog">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Модельный ряд</span>
+      <h2>Выберите <em>своего быка</em></h2>
+      <p>От атмосферного V12 до гибридной High Performance Electrified Vehicle — каждая модель Lamborghini создаётся для одной цели: вызывать эмоции.</p>
+    </div>
+
+    <div class="filter-row reveal">
+      <button class="filter-btn active" data-filter="all">Все модели</button>
+      <button class="filter-btn" data-filter="v12">V12</button>
+      <button class="filter-btn" data-filter="v10">V10</button>
+      <button class="filter-btn" data-filter="hybrid">Гибрид</button>
+    </div>
+
+    <div class="car-grid stagger" id="carGrid">
+      <article class="car-card reveal" style="--i:0" data-cat="v12">
+        <div class="car-media">
+          <span class="car-tag">V12 · Atmo</span>
+          <img src="https://images.unsplash.com/photo-1612825173281-9a193378527e?auto=format&fit=crop&w=1000&q=80" alt="Lamborghini Aventador оранжевого цвета в гараже" loading="lazy">
+        </div>
+        <div class="car-body">
+          <h3>Aventador LP 780-4 Ultimae</h3>
+          <div class="cat-line">Финальная глава эпохи атмосферного V12</div>
+          <div class="car-specs">
+            <div><b>780</b><span>Л.с.</span></div>
+            <div><b>2.8</b><span>0–100, сек</span></div>
+            <div><b>350</b><span>Vmax, км/ч</span></div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price"><span>от</span><b>€ 380 000</b></div>
+            <a href="#contacts" class="car-link">Узнать больше →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card reveal" style="--i:1" data-cat="v10">
+        <div class="car-media">
+          <span class="car-tag">V10 · Atmo</span>
+          <img src="https://images.unsplash.com/photo-1566473965997-3de9c817e938?auto=format&fit=crop&w=1000&q=80" alt="Красный Lamborghini Huracán EVO на дороге" loading="lazy">
+        </div>
+        <div class="car-body">
+          <h3>Huracán EVO</h3>
+          <div class="cat-line">Баланс агрессии и повседневного драйва</div>
+          <div class="car-specs">
+            <div><b>640</b><span>Л.с.</span></div>
+            <div><b>2.9</b><span>0–100, сек</span></div>
+            <div><b>325</b><span>Vmax, км/ч</span></div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price"><span>от</span><b>€ 220 000</b></div>
+            <a href="#contacts" class="car-link">Узнать больше →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card reveal" style="--i:2" data-cat="v10">
+        <div class="car-media">
+          <span class="car-tag">V10 · Track</span>
+          <img src="https://images.unsplash.com/photo-1617650728468-8581e439c864?auto=format&fit=crop&w=1000&q=80" alt="Зелёно-чёрный Lamborghini Huracán STO" loading="lazy">
+        </div>
+        <div class="car-body">
+          <h3>Huracán STO</h3>
+          <div class="cat-line">Гоночная лаборатория для дорог общего пользования</div>
+          <div class="car-specs">
+            <div><b>640</b><span>Л.с.</span></div>
+            <div><b>3.0</b><span>0–100, сек</span></div>
+            <div><b>310</b><span>Vmax, км/ч</span></div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price"><span>от</span><b>€ 260 000</b></div>
+            <a href="#contacts" class="car-link">Узнать больше →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card reveal" style="--i:3" data-cat="hybrid">
+        <div class="car-media">
+          <span class="car-tag">V12 · Hybrid</span>
+          <img src="https://images.unsplash.com/photo-1618846042668-eda9c8261189?auto=format&fit=crop&w=1000&q=80" alt="Lamborghini Revuelto зелёно-чёрного цвета в поле" loading="lazy">
+        </div>
+        <div class="car-body">
+          <h3>Revuelto</h3>
+          <div class="cat-line">Первый серийный V12-гибрид HPEV</div>
+          <div class="car-specs">
+            <div><b>1015</b><span>Л.с.</span></div>
+            <div><b>2.5</b><span>0–100, сек</span></div>
+            <div><b>350</b><span>Vmax, км/ч</span></div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price"><span>от</span><b>€ 470 000</b></div>
+            <a href="#contacts" class="car-link">Узнать больше →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card reveal" style="--i:4" data-cat="v10">
+        <div class="car-media">
+          <span class="car-tag">Наследие</span>
+          <img src="https://images.unsplash.com/photo-1535382651921-5e77ea4458f2?auto=format&fit=crop&w=1000&q=80" alt="Красный Lamborghini Gallardo" loading="lazy">
+        </div>
+        <div class="car-body">
+          <h3>Gallardo Legacy</h3>
+          <div class="cat-line">Модель, продавшаяся тиражом более 14 000 экземпляров</div>
+          <div class="car-specs">
+            <div><b>560</b><span>Л.с.</span></div>
+            <div><b>3.4</b><span>0–100, сек</span></div>
+            <div><b>325</b><span>Vmax, км/ч</span></div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price"><span>от</span><b>€ 150 000</b></div>
+            <a href="#contacts" class="car-link">Узнать больше →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="car-card reveal" style="--i:5" data-cat="v12">
+        <div class="car-media">
+          <span class="car-tag">V12 · SVJ</span>
+          <img src="https://images.unsplash.com/photo-1596711715198-16788fb84007?auto=format&fit=crop&w=1000&q=80" alt="Жёлтый Lamborghini Aventador SVJ на дороге" loading="lazy">
+        </div>
+        <div class="car-body">
+          <h3>Aventador SVJ</h3>
+          <div class="cat-line">Рекордсмен Нюрбургринга среди серийных авто</div>
+          <div class="car-specs">
+            <div><b>770</b><span>Л.с.</span></div>
+            <div><b>2.8</b><span>0–100, сек</span></div>
+            <div><b>350</b><span>Vmax, км/ч</span></div>
+          </div>
+          <div class="car-foot">
+            <div class="car-price"><span>от</span><b>€ 420 000</b></div>
+            <a href="#contacts" class="car-link">Узнать больше →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="wedge-divider"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><polygon points="0,64 0,20 480,64 960,4 1440,64 1440,64" fill="#0d0c0f"></polygon></svg></div>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Галерея</span>
+      <h2>Каждый кадр — <em>деталь одержимости</em></h2>
+      <p>От карбоновых воздухозаборников до ножничных дверей — визуальная летопись деталей, из которых собирается легенда.</p>
+    </div>
+
+    <div class="masonry reveal" id="masonry">
+      <figure data-caption="Aventador · Гараж" data-full="https://images.unsplash.com/photo-1612825173281-9a193378527e?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1612825173281-9a193378527e?auto=format&fit=crop&w=700&q=80" alt="Оранжевый Lamborghini Aventador в гараже" loading="lazy"></figure>
+
+      <figure data-caption="Профиль · Серый металлик" data-full="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=700&q=80" alt="Серый суперкар на парковке" loading="lazy"></figure>
+
+      <figure data-caption="Жёлтый V10 · Улица" data-full="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=700&q=80" alt="Жёлтый спортивный автомобиль" loading="lazy"></figure>
+
+      <figure data-caption="Gold Edition" data-full="https://images.unsplash.com/photo-1570294646112-27ce4f174e38?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1570294646112-27ce4f174e38?auto=format&fit=crop&w=700&q=80" alt="Золотистый люксовый автомобиль" loading="lazy"></figure>
+
+      <figure data-caption="Пустыня · Контраст" data-full="https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1571607388263-1044f9ea01dd?auto=format&fit=crop&w=700&q=80" alt="Суперкар на фоне пустыни" loading="lazy"></figure>
+
+      <figure data-caption="У арены" data-full="https://images.unsplash.com/photo-1530906358829-e84b2769270f?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1530906358829-e84b2769270f?auto=format&fit=crop&w=700&q=80" alt="Спортивный автомобиль на фоне стадиона" loading="lazy"></figure>
+
+      <figure data-caption="Salon Nero" data-full="https://images.unsplash.com/photo-1544482570-c8a1e3e69273?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1544482570-c8a1e3e69273?auto=format&fit=crop&w=700&q=80" alt="Чёрный салон Lamborghini днём" loading="lazy"></figure>
+
+      <figure data-caption="Штурвал" data-full="https://images.unsplash.com/photo-1547672932-0c1fcf8be920?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1547672932-0c1fcf8be920?auto=format&fit=crop&w=700&q=80" alt="Спортивное рулевое колесо" loading="lazy"></figure>
+
+      <figure data-caption="Асфальт · Ночь" data-full="https://images.unsplash.com/photo-1526550517342-e086b387edda?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1526550517342-e086b387edda?auto=format&fit=crop&w=700&q=80" alt="Чёрный суперкар на асфальтовой дороге" loading="lazy"></figure>
+
+      <figure data-caption="Городской силуэт" data-full="https://images.unsplash.com/photo-1648594756894-151b3eb89400?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1648594756894-151b3eb89400?auto=format&fit=crop&w=700&q=80" alt="Белый суперкар припаркован на улице" loading="lazy"></figure>
+
+      <figure data-caption="Эмблема" data-full="https://images.unsplash.com/photo-1625957989497-f2f95e21bd89?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1625957989497-f2f95e21bd89?auto=format&fit=crop&w=700&q=80" alt="Крупный план эмблемы автомобиля" loading="lazy"></figure>
+
+      <figure data-caption="Разгон" data-full="https://images.unsplash.com/photo-1633507104426-f2be1293f5a2?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1633507104426-f2be1293f5a2?auto=format&fit=crop&w=700&q=80" alt="Белый суперкар в движении" loading="lazy"></figure>
+
+      <figure data-caption="Фиолетовый акцент" data-full="https://images.unsplash.com/photo-1633650915549-f69463863651?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1633650915549-f69463863651?auto=format&fit=crop&w=700&q=80" alt="Фиолетовый спортивный автомобиль у здания" loading="lazy"></figure>
+
+      <figure data-caption="Решётка радиатора" data-full="https://images.unsplash.com/photo-1625958047146-0f73d06f22df?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1625958047146-0f73d06f22df?auto=format&fit=crop&w=700&q=80" alt="Крупный план решётки радиатора" loading="lazy"></figure>
+
+      <figure data-caption="Гараж · Ночь" data-full="https://images.unsplash.com/photo-1694575341005-10a3e9400a58?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1694575341005-10a3e9400a58?auto=format&fit=crop&w=700&q=80" alt="Чёрный суперкар в гараже" loading="lazy"></figure>
+
+      <figure data-caption="Взлётная полоса" data-full="https://images.unsplash.com/photo-1707399720709-cd14e30d5e3a?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1707399720709-cd14e30d5e3a?auto=format&fit=crop&w=700&q=80" alt="Серый суперкар на взлётной полосе" loading="lazy"></figure>
+
+      <figure data-caption="У фасада" data-full="https://images.unsplash.com/photo-1653484451901-392eed700139?auto=format&fit=crop&w=2000&q=85"><img src="https://images.unsplash.com/photo-1653484451901-392eed700139?auto=format&fit=crop&w=700&q=80" alt="Автомобиль у здания" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Закрыть">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Предыдущее фото">‹</button>
+  <img id="lbImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Следующее фото">›</button>
+  <div class="lightbox-cap" id="lbCap"></div>
+</div>
+
+<div class="wedge-divider"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><polygon points="0,0 0,64 1440,64 1440,10 960,60 480,0" fill="#07070a"></polygon></svg></div>
+
+<!-- ============ CHARACTERISTICS ============ -->
+<section class="specs-section" id="specs">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Инженерия</span>
+      <h2>Цифры, которые <em>сбивают дыхание</em></h2>
+      <p>За каждой характеристикой — тысячи часов на стенде, в аэротрубе и на треке Нардо.</p>
+    </div>
+
+    <div class="specs-layout">
+      <div class="specs-visual reveal-scale">
+        <img src="https://images.unsplash.com/photo-1549288830-668bb318cb38?auto=format&fit=crop&w=1000&q=80" alt="Пустой салон Lamborghini" loading="lazy">
+        <div class="float-card glass clip-panel">
+          <b>V12 · 6.5L</b>
+          <span>Атмосферный агрегат, 350 Нм момента без турбонаддува</span>
+        </div>
+      </div>
+
+      <div class="stat-grid stagger">
+        <div class="stat-card glass reveal" style="--i:0">
+          <span class="stat-icon">Мощность</span>
+          <div class="stat-num" data-count="1015"><span class="value">0</span><span class="unit">л.с.</span></div>
+          <p class="stat-label">Суммарная отдача Revuelto — V12 плюс три электромотора</p>
+          <div class="stat-bar"><i data-width="96"></i></div>
+        </div>
+        <div class="stat-card glass reveal" style="--i:1">
+          <span class="stat-icon">Разгон</span>
+          <div class="stat-num" data-count="25" data-decimal="1"><span class="value">0</span><span class="unit">сек</span></div>
+          <p class="stat-label">0–100 км/ч — быстрее, чем произносится название модели</p>
+          <div class="stat-bar"><i data-width="90"></i></div>
+        </div>
+        <div class="stat-card glass reveal" style="--i:2">
+          <span class="stat-icon">Макс. скорость</span>
+          <div class="stat-num" data-count="350"><span class="value">0</span><span class="unit">км/ч</span></div>
+          <p class="stat-label">Электронно ограничена ради безопасности на дороге</p>
+          <div class="stat-bar"><i data-width="88"></i></div>
+        </div>
+        <div class="stat-card glass reveal" style="--i:3">
+          <span class="stat-icon">Масса</span>
+          <div class="stat-num" data-count="1772"><span class="value">0</span><span class="unit">кг</span></div>
+          <p class="stat-label">Карбоновый монокок держит вес на уровне спорткупе</p>
+          <div class="stat-bar"><i data-width="70"></i></div>
+        </div>
+        <div class="stat-card glass reveal" style="--i:4">
+          <span class="stat-icon">Крутящий момент</span>
+          <div class="stat-num" data-count="725"><span class="value">0</span><span class="unit">Нм</span></div>
+          <p class="stat-label">Пиковое значение при полной интеграции гибридной системы</p>
+          <div class="stat-bar"><i data-width="80"></i></div>
+        </div>
+        <div class="stat-card glass reveal" style="--i:5">
+          <span class="stat-icon">Обороты</span>
+          <div class="stat-num" data-count="9500"><span class="value">0</span><span class="unit">об/мин</span></div>
+          <p class="stat-label">Красная зона тахометра — редкость среди современных V12</p>
+          <div class="stat-bar"><i data-width="98"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO ============ -->
+<section class="video-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Смотреть</span>
+      <h2>Услышьте, как <em>звучит V12</em></h2>
+      <p>Официальный ролик Lamborghini о старте гибридной эры — Revuelto, «From Now On».</p>
+    </div>
+
+    <div class="video-frame reveal-scale" id="videoOpen">
+      <img src="https://images.unsplash.com/photo-1621285960899-ba033aeca203?auto=format&fit=crop&w=1800&q=80" alt="Превью видео — красно-чёрный салон Lamborghini" loading="lazy">
+      <div class="video-caption">
+        <div class="eyebrow">Official Film · 01:57</div>
+        <h3>Revuelto — From Now On</h3>
+      </div>
+      <div class="video-play">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 4L20 12L6 20V4Z" fill="currentColor"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="video-modal" id="videoModal">
+  <div class="frame-wrap">
+    <button class="video-modal-close" id="videoClose" aria-label="Закрыть видео">✕</button>
+    <iframe id="videoIframe" src="" title="Lamborghini Revuelto — From Now On" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="wedge-divider"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><polygon points="0,64 0,20 480,64 960,4 1440,64 1440,64" fill="#07070a"></polygon></svg></div>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head centered reveal" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow">Отзывы владельцев</span>
+      <h2>Слова тех, кто <em>уже за рулём</em></h2>
+      <p>Истории клиентов дилерской сети — от первой покупки до трека выходного дня.</p>
+    </div>
+
+    <div class="review-track-wrap reveal">
+      <div class="review-track" id="reviewTrack">
+        <div class="review-card glass">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">Забрал Huracán STO два месяца назад — до сих пор не привык к тому, как автомобиль реагирует на малейшее движение руля. Это не машина, а продолжение тела.</p>
+          <div class="review-person">
+            <div class="review-avatar">А.К.</div>
+            <div><b>Андрей К.</b><span>Владелец Huracán STO</span></div>
+          </div>
+        </div>
+        <div class="review-card glass">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">Сервис в дилерском центре превзошёл ожидания: от индивидуальной конфигурации Ad Personam до доставки — каждая деталь была продумана.</p>
+          <div class="review-person">
+            <div class="review-avatar">М.С.</div>
+            <div><b>Мария С.</b><span>Владелица Urus</span></div>
+          </div>
+        </div>
+        <div class="review-card glass">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">Revuelto — это шок в хорошем смысле. Электромоторы дают мгновенный отклик, а звук V12 на 9000 об/мин по-прежнему вызывает мурашки.</p>
+          <div class="review-person">
+            <div class="review-avatar">Д.П.</div>
+            <div><b>Дмитрий П.</b><span>Владелец Revuelto</span></div>
+          </div>
+        </div>
+        <div class="review-card glass">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">Взял Aventador SVJ на трек-день — управляемость на пределе поражает. Это последний из «настоящих» атмосферных V12, и я счастлив быть его частью.</p>
+          <div class="review-person">
+            <div class="review-avatar">И.Р.</div>
+            <div><b>Игорь Р.</b><span>Владелец Aventador SVJ</span></div>
+          </div>
+        </div>
+        <div class="review-card glass">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">Консультанты помогли подобрать конфигурацию под мой рост и стиль вождения. Спустя год эксплуатации — ни единой претензии к качеству сборки.</p>
+          <div class="review-person">
+            <div class="review-avatar">Е.В.</div>
+            <div><b>Елена В.</b><span>Владелица Huracán EVO</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="review-controls" id="reviewDots"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="section-head reveal" style="margin-bottom:0;">
+        <span class="eyebrow">Вопрос — ответ</span>
+        <h2>Прежде чем <em>сесть за руль</em></h2>
+        <p>Собрали вопросы, которые чаще всего задают перед покупкой или тест-драйвом.</p>
+      </div>
+      <div class="faq-list reveal" id="faqList">
+        <div class="faq-item glass">
+          <button class="faq-q"><span>Как записаться на тест-драйв?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Оставьте заявку в форме раздела «Контакты» или позвоните в ближайший дилерский центр. Тест-драйв обычно можно организовать в течение 3–5 рабочих дней с учётом наличия конкретной модели.</p></div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-q"><span>Какой срок ожидания при заказе новой модели?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Стандартный срок производства — от 6 до 14 месяцев в зависимости от модели и уровня индивидуальной конфигурации через программу Ad Personam.</p></div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-q"><span>Есть ли программа trade-in?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Да, дилерская сеть принимает автомобили в зачёт стоимости нового Lamborghini после независимой оценки состояния и истории обслуживания.</p></div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-q"><span>Какая гарантия предоставляется на новые автомобили?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Официальная гарантия производителя составляет 3 года без ограничения пробега, с возможностью расширения до 5–7 лет по программе Lamborghini Extended Warranty.</p></div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-q"><span>Можно ли оформить финансирование или лизинг?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Да, доступны индивидуальные программы финансирования и лизинга через партнёрские банки — параметры рассчитываются под конкретную модель и клиента.</p></div>
+        </div>
+        <div class="faq-item glass">
+          <button class="faq-q"><span>Как часто нужно проходить техническое обслуживание?</span><span class="plus"></span></button>
+          <div class="faq-a"><p>Регламентное ТО проводится раз в год или каждые 12 500 км в зависимости от того, что наступит раньше — рекомендуем придерживаться сервисной книжки.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wedge-divider"><svg viewBox="0 0 1440 64" preserveAspectRatio="none"><polygon points="0,0 0,64 1440,64 1440,10 960,60 480,0" fill="#07070a"></polygon></svg></div>
+
+<!-- ============ CONTACTS ============ -->
+<section class="contacts" id="contacts">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Свяжитесь с нами</span>
+      <h2>Начните <em>свой путь к скорости</em></h2>
+      <p>Оставьте заявку — консультант дилерского центра подберёт модель и организует тест-драйв.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info reveal">
+        <div class="info-row glass">
+          <div class="icon">✆</div>
+          <div><h4>Телефон</h4><p>+7 (495) 000-00-00 · ежедневно, 9:00–21:00</p></div>
+        </div>
+        <div class="info-row glass">
+          <div class="icon">✉</div>
+          <div><h4>Email</h4><p>concierge@lamborghini-demo.example</p></div>
+        </div>
+        <div class="info-row glass">
+          <div class="icon">⌖</div>
+          <div><h4>Шоурум</h4><p>Москва, Пресненская наб., 10 · по предварительной записи</p></div>
+        </div>
+        <div class="info-row glass">
+          <div class="icon">🕒</div>
+          <div><h4>Часы работы</h4><p>Пн–Сб: 9:00–21:00 · Вс: 10:00–18:00</p></div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="YouTube">YT</a>
+          <a href="#" aria-label="Telegram">TG</a>
+        </div>
+      </div>
+
+      <form class="contact-form glass" id="contactForm">
+        <div class="form-row">
+          <div class="field"><label for="fname">Имя</label><input id="fname" type="text" placeholder="Ваше имя" required></div>
+          <div class="field"><label for="fphone">Телефон</label><input id="fphone" type="tel" placeholder="+7 (___) ___-__-__" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="femail">Email</label><input id="femail" type="email" placeholder="you@example.com" required></div>
+          <div class="field">
+            <label for="fmodel">Модель</label>
+            <select id="fmodel">
+              <option>Aventador LP 780-4 Ultimae</option>
+              <option>Huracán EVO</option>
+              <option>Huracán STO</option>
+              <option>Revuelto</option>
+              <option>Gallardo Legacy</option>
+              <option>Aventador SVJ</option>
+              <option>Ещё не решил(а)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label for="fmsg">Сообщение</label><textarea id="fmsg" placeholder="Расскажите, что вас интересует — тест-драйв, конфигурация, сроки поставки…"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;">Отправить заявку</button>
+        <div class="form-success" id="formSuccess">✓ Заявка отправлена. Консультант свяжется с вами в течение рабочего дня.</div>
+        <p class="form-note">Отправляя форму, вы соглашаетесь с политикой обработки персональных данных. Это демонстрационная форма — данные никуда не передаются.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo"><span class="mark"><span>L</span></span>Lamborghini</a>
+        <p>Демонстрационный проект в стиле Automobili Lamborghini S.p.A. Создан как учебный пример премиального веб-дизайна и не является официальным сайтом производителя.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Навигация</h5>
+        <ul>
+          <li><a href="#history">История</a></li>
+          <li><a href="#catalog">Модели</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#specs">Характеристики</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Модели</h5>
+        <ul>
+          <li><a href="#catalog">Aventador</a></li>
+          <li><a href="#catalog">Huracán</a></li>
+          <li><a href="#catalog">Revuelto</a></li>
+          <li><a href="#catalog">Gallardo</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Компания</h5>
+        <ul>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Lamborghini Demo Concept. Все права на бренд принадлежат Automobili Lamborghini S.p.A.</span>
+      <span>Разработано как пример премиального фронтенда · Glassmorphism · Vanilla JS</span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Наверх">↑</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- NAV SCROLL STATE ---------- */
+  var nav = document.getElementById('nav');
+  var backTop = document.getElementById('backTop');
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    nav.classList.toggle('scrolled', y > 40);
+    backTop.classList.toggle('show', y > 700);
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  backTop.addEventListener('click', function(){ window.scrollTo({ top:0, behavior:'smooth' }); });
+
+  /* ---------- MOBILE MENU ---------- */
+  var burger = document.getElementById('burger');
+  var panel = document.getElementById('mobilePanel');
+  var scrim = document.getElementById('scrim');
+  function closeMenu(){
+    burger.classList.remove('active');
+    panel.classList.remove('open');
+    scrim.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function openMenu(){
+    burger.classList.add('active');
+    panel.classList.add('open');
+    scrim.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  burger.addEventListener('click', function(){
+    burger.classList.contains('active') ? closeMenu() : openMenu();
+  });
+  scrim.addEventListener('click', closeMenu);
+  panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  /* ---------- REVEAL ON SCROLL ---------- */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-scale');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .14, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ---------- CATALOG FILTER ---------- */
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('#carGrid .car-card');
+  filterBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      filterBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      cards.forEach(function(card){
+        var match = (f === 'all') || (card.getAttribute('data-cat') === f);
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+
+  /* ---------- GALLERY LIGHTBOX ---------- */
+  var figures = Array.prototype.slice.call(document.querySelectorAll('#masonry figure'));
+  var lightbox = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var currentIndex = 0;
+
+  function openLightbox(i){
+    currentIndex = i;
+    var fig = figures[i];
+    lbImg.src = fig.getAttribute('data-full');
+    lbImg.alt = fig.querySelector('img').alt;
+    lbCap.textContent = fig.getAttribute('data-caption') || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function showNext(){ openLightbox((currentIndex + 1) % figures.length); }
+  function showPrev(){ openLightbox((currentIndex - 1 + figures.length) % figures.length); }
+
+  figures.forEach(function(fig, i){
+    fig.addEventListener('click', function(){ openLightbox(i); });
+  });
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbNext').addEventListener('click', showNext);
+  document.getElementById('lbPrev').addEventListener('click', showPrev);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox){ closeLightbox(); } });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowRight') showNext();
+    if(e.key === 'ArrowLeft') showPrev();
+  });
+
+  /* ---------- STAT COUNT-UP ---------- */
+  var statCards = document.querySelectorAll('.stat-card');
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var decimals = parseInt(el.getAttribute('data-decimal') || '0', 10);
+    var divisor = decimals ? Math.pow(10, decimals) : 1;
+    var realTarget = decimals ? target / divisor : target;
+    var valueEl = el.querySelector('.value');
+    var start = null;
+    var duration = 1500;
+    function step(ts){
+      if(!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = realTarget * eased;
+      valueEl.textContent = decimals ? current.toFixed(decimals) : Math.round(current);
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var statIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var numEl = entry.target.querySelector('.stat-num');
+          if(numEl) animateCount(numEl);
+          var bar = entry.target.querySelector('.stat-bar i');
+          if(bar) bar.style.width = bar.getAttribute('data-width') + '%';
+          statIo.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .35 });
+    statCards.forEach(function(c){ statIo.observe(c); });
+  }
+
+  /* ---------- VIDEO MODAL ---------- */
+  var videoOpen = document.getElementById('videoOpen');
+  var videoModal = document.getElementById('videoModal');
+  var videoIframe = document.getElementById('videoIframe');
+  var videoClose = document.getElementById('videoClose');
+  var YT_ID = 'sitXeGjm4Mc';
+  videoOpen.addEventListener('click', function(){
+    videoIframe.src = 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&rel=0';
+    videoModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeVideo(){
+    videoModal.classList.remove('open');
+    videoIframe.src = '';
+    document.body.style.overflow = '';
+  }
+  videoClose.addEventListener('click', closeVideo);
+  videoModal.addEventListener('click', function(e){ if(e.target === videoModal){ closeVideo(); } });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeVideo(); });
+
+  /* ---------- TESTIMONIAL CAROUSEL ---------- */
+  var track = document.getElementById('reviewTrack');
+  var reviewCards = track.children;
+  var dotsWrap = document.getElementById('reviewDots');
+  function perView(){
+    var w = window.innerWidth;
+    if(w <= 640) return 1;
+    if(w <= 980) return 2;
+    return 3;
+  }
+  var reviewIndex = 0;
+  function totalSlides(){ return Math.max(1, reviewCards.length - perView() + 1); }
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    var n = totalSlides();
+    for(var i=0;i<n;i++){
+      var d = document.createElement('button');
+      d.className = 'review-dot' + (i===0?' active':'');
+      d.setAttribute('aria-label', 'Слайд ' + (i+1));
+      (function(idx){ d.addEventListener('click', function(){ goToSlide(idx); }); })(i);
+      dotsWrap.appendChild(d);
+    }
+  }
+  function goToSlide(i){
+    reviewIndex = Math.max(0, Math.min(i, totalSlides()-1));
+    var cardWidth = reviewCards[0].getBoundingClientRect().width + 22;
+    track.style.transform = 'translateX(' + (-reviewIndex * cardWidth) + 'px)';
+    Array.prototype.forEach.call(dotsWrap.children, function(d, idx){ d.classList.toggle('active', idx === reviewIndex); });
+  }
+  buildDots();
+  var reviewAuto = setInterval(function(){
+    goToSlide((reviewIndex + 1) % totalSlides());
+  }, 5500);
+  track.addEventListener('mouseenter', function(){ clearInterval(reviewAuto); });
+  window.addEventListener('resize', function(){ buildDots(); goToSlide(0); });
+
+  /* ---------- FAQ ACCORDION ---------- */
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item.active').forEach(function(open){
+        open.classList.remove('active');
+        open.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isActive){
+        item.classList.add('active');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ---------- CONTACT FORM (demo, no backend) ---------- */
+  var form = document.getElementById('contactForm');
+  var success = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+    setTimeout(function(){ success.classList.remove('show'); }, 6000);
+  });
+
+  /* ---------- FOOTER YEAR ---------- */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+})();
+</script>
+</body>
+</html>
